@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="RetailInventoryApp.Views.ProductManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Product Management" FontSize="24" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" Margin="0,0,0,16"/>
+
+        <Border Grid.Row="1" Background="White" CornerRadius="6" Padding="16" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock x:Name="TxtFormTitle" Text="Add New Product" FontWeight="SemiBold" FontSize="15" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                        <TextBlock Text="SKU" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtSku" Padding="6" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="8,0,8,0">
+                        <TextBlock Text="Name" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtName" Padding="6" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="8,0,8,0">
+                        <TextBlock Text="Category" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtCategory" Padding="6" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Margin="8,0,8,0">
+                        <TextBlock Text="Unit Price (Rs.)" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtPrice" Padding="6" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="4" Margin="8,0,0,0">
+                        <TextBlock Text="Reorder Level" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtReorderLevel" Padding="6" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Opening Stock (new products only)" FontSize="11" Foreground="Gray"/>
+                        <TextBox x:Name="TxtOpeningStock" Padding="6" Margin="0,4,0,0" Width="180"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                    <Button x:Name="BtnSave" Content="Save Product" Style="{StaticResource PrimaryButtonStyle}" Click="BtnSave_Click" Margin="0,0,10,0" Width="130"/>
+                    <Button x:Name="BtnClear" Content="Clear / New" Click="BtnClear_Click" Padding="14,8" Margin="0,0,10,0"/>
+                    <Button x:Name="BtnDeactivate" Content="Deactivate Selected" Click="BtnDeactivate_Click" Padding="14,8"
+                            Background="{StaticResource DangerBrush}" Foreground="White" BorderThickness="0"/>
+                </StackPanel>
+                <TextBlock x:Name="TxtValidationMessage" Foreground="{StaticResource DangerBrush}" Margin="0,8,0,0" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Background="White" CornerRadius="6">
+            <DataGrid x:Name="GridProducts" AutoGenerateColumns="False" IsReadOnly="True"
+                      HeadersVisibility="Column" GridLinesVisibility="None" RowHeight="34"
+                      SelectionMode="Single" SelectionChanged="GridProducts_SelectionChanged"
+                      BorderThickness="0" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="SKU" Binding="{Binding Sku}" Width="110"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="130"/>
+                    <DataGridTextColumn Header="Price (Rs.)" Binding="{Binding UnitPrice, StringFormat=N2}" Width="100"/>
+                    <DataGridTextColumn Header="Stock" Binding="{Binding StockQuantity}" Width="80"/>
+                    <DataGridTextColumn Header="Reorder Lvl" Binding="{Binding ReorderLevel}" Width="90"/>
+                    <DataGridTextColumn Header="Active" Binding="{Binding IsActive}" Width="70"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

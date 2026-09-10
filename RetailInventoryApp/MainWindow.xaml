@@ -1,0 +1,33 @@
+﻿<Window x:Class="RetailInventoryApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Retail Inventory &amp; Sales Manager" Height="720" Width="1180"
+        WindowStartupLocation="CenterScreen" MinHeight="600" MinWidth="960">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource PrimaryBrush}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="0,0,0,20">
+                    <TextBlock Text="Retail Manager" Foreground="White" FontSize="18" FontWeight="Bold" Margin="18,22,10,4"/>
+                    <TextBlock Text="Inventory &amp; Sales" Foreground="#95A5A6" FontSize="11" Margin="18,0,10,0"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top">
+                    <Button x:Name="BtnDashboard" Content="Dashboard" Style="{StaticResource NavButtonStyle}" Click="NavButton_Click"/>
+                    <Button x:Name="BtnProducts" Content="Products" Style="{StaticResource NavButtonStyle}" Click="NavButton_Click"/>
+                    <Button x:Name="BtnSales" Content="Sales" Style="{StaticResource NavButtonStyle}" Click="NavButton_Click"/>
+                    <Button x:Name="BtnStock" Content="Stock Management" Style="{StaticResource NavButtonStyle}" Click="NavButton_Click"/>
+                    <Button x:Name="BtnHistory" Content="Transaction History" Style="{StaticResource NavButtonStyle}" Click="NavButton_Click"/>
+                </StackPanel>
+                <TextBlock DockPanel.Dock="Bottom" Text="v1.0" Foreground="#7F8C8D" FontSize="10" Margin="18,0,0,14"/>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="{StaticResource LightBg}">
+            <ContentControl x:Name="MainContent"/>
+        </Border>
+    </Grid>
+</Window>
